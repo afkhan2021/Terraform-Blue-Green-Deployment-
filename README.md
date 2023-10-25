@@ -33,7 +33,7 @@
 +Hi, I am Carol
 +```
 +
-+However we should also be able to rollback to the earlier setup.
+However we should also be able to rollback to the earlier setup.
 +
 +#### Evaluation criteria
 + - [ ] The infrastructure setup is automated using terraform or cloudformation and the code is checked into a version control system.
