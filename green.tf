@@ -7,6 +7,7 @@ resource "aws_instance" "green" {
   instance_type          = "t2.micro"
   subnet_id              = local.private_a_subnet_id
   vpc_security_group_ids = [aws_security_group.web.id]
+  key_name               = "terraform_ec2_key"
 
   user_data = templatefile("./init-script.sh", {
     file_content = "green version 1.1 - ${count.index}"
@@ -16,6 +17,12 @@ resource "aws_instance" "green" {
     Name = "green version 1.1 - ${count.index}"
   }
 }
+
+resource "aws_key_pair" "terraform_ec2_key" {
+ key_name = "terraform_ec2_key"
+ public_key = "${file("/Users/arifkhan/.ssh/id_rsa.pub")}"
+}
+
 
 # Load Balancer Target Group
 # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/lb_target_group
